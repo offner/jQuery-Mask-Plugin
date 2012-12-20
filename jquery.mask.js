@@ -84,7 +84,7 @@
     };
 
     var setOnPaste = function() {
-      (hasOnSupport()) ? $el.on("paste", onPasteMethod) : $el.onpaste = onPasteMethod;
+      (hasOnSupport()) ? $el.on("input propertychange", onPasteMethod) : $el.onpaste = onPasteMethod;
     };
 
     var setOnKeyUp = function(){
@@ -136,7 +136,7 @@
           oNewValue += arguments[i];
         }
 
-        return cleanBullShit(oNewValue, mask);
+        return clean(oNewValue, mask);
       });
     };
 
@@ -191,7 +191,7 @@
       return true;
     };
 
-    var cleanBullShit = function (oNewValue, mask) {
+    var clean = function (oNewValue, mask) {
       oNewValue = oNewValue.split('');
       for(var i = 0; i < mask.length; i++){
         if(validDigit(mask.charAt(i), oNewValue[i]) === false)
